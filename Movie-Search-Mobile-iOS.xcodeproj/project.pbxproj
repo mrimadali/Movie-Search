@@ -16,8 +16,11 @@
 		DB4DF0822085B89A00B420B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB4DF0802085B89A00B420B5 /* LaunchScreen.storyboard */; };
 		DB4DF08D2085B89A00B420B5 /* Movie_Search_Mobile_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF08C2085B89A00B420B5 /* Movie_Search_Mobile_iOSTests.swift */; };
 		DB4DF0982085B89A00B420B5 /* Movie_Search_Mobile_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0972085B89A00B420B5 /* Movie_Search_Mobile_iOSUITests.swift */; };
-		DB4DF0AF2085BA5300B420B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A72085BA5300B420B5 /* ViewController.swift */; };
+		DB4DF0AF2085BA5300B420B5 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */; };
 		DB4DF0B02085BA5300B420B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */; };
+		DB663E6520864EBC00FB93E5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */; };
+		DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */; };
+		DBC97D83208610C000BA6C3B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC97D82208610C000BA6C3B /* AppUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +60,11 @@
 		DB4DF0932085B89A00B420B5 /* Movie-Search-Mobile-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie-Search-Mobile-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4DF0972085B89A00B420B5 /* Movie_Search_Mobile_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_Search_Mobile_iOSUITests.swift; sourceTree = "<group>"; };
 		DB4DF0992085B89A00B420B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB4DF0A72085BA5300B420B5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		DBC97D82208610C000BA6C3B /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		EB493101A0A501A3705B6862 /* Pods_Movie_Search_Mobile_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_Search_Mobile_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B85453457E57166B54806A /* Pods-Movie-Search-Mobile-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie-Search-Mobile-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movie-Search-Mobile-iOSUITests/Pods-Movie-Search-Mobile-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,7 +186,7 @@
 		DB4DF0A62085BA5300B420B5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DB4DF0A72085BA5300B420B5 /* ViewController.swift */,
+				DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 		DB4DF0AA2085BA5300B420B5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +226,8 @@
 		DB4DF0AD2085BA5300B420B5 /* Utils+Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */,
+				DBC97D82208610C000BA6C3B /* AppUtils.swift */,
 			);
 			path = "Utils+Adapters";
 			sourceTree = "<group>";
@@ -442,8 +451,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB4DF0AF2085BA5300B420B5 /* ViewController.swift in Sources */,
+				DBC97D83208610C000BA6C3B /* AppUtils.swift in Sources */,
+				DB4DF0AF2085BA5300B420B5 /* MoviesViewController.swift in Sources */,
+				DB663E6520864EBC00FB93E5 /* MovieTableViewCell.swift in Sources */,
 				DB4DF0B02085BA5300B420B5 /* AppDelegate.swift in Sources */,
+				DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */,
 				DB4DF07D2085B89900B420B5 /* Movie_Search_Mobile_iOS.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieTableViewCell: UITableViewCell {
 
@@ -16,6 +17,8 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
+    var isDetailCell = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -24,6 +27,25 @@ class MovieTableViewCell: UITableViewCell {
         bgView.layer.shadowOpacity = 0.2
         bgView.layer.shadowRadius  = 1.0
         bgView.layer.shadowOffset  = CGSize(width: 1.0, height: 1.0)
+    }
+    
+    func configureCell(model: MovieModel) {
+        releaseDateLabel.text = "Release Date: \(model.releaseDate)"
+        
+        //Download image asynchronously.
+        var urlString = ""
+        if isDetailCell {
+            urlString = "\(largePosterImageBaseURL)\(model.posterPath)"
+            detailLabel.text = "Movie Overview: \(model.overview)"
+        }else {
+            movieNameLabel.text = model.movieTitle
+            urlString = "\(posterImageBaseURL)\(model.posterPath)"
+            detailLabel.text = "\(model.overview)"
+        }
+        let url = URL(string: urlString)
+        if let imageURL = url {
+            iconImageView.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder"))
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

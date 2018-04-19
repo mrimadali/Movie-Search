@@ -19,6 +19,7 @@
 		DB4DF0AF2085BA5300B420B5 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */; };
 		DB4DF0B02085BA5300B420B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */; };
 		DB663E6520864EBC00FB93E5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */; };
+		DB8D26A92088F49D0081A2CA /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D26A82088F49D0081A2CA /* MovieDetailViewController.swift */; };
 		DBB72822208776BA002D2369 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB72821208776BA002D2369 /* Constants.swift */; };
 		DBB7282420878442002D2369 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB7282320878442002D2369 /* MovieModel.swift */; };
 		DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */; };
@@ -65,6 +66,7 @@
 		DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		DB8D26A82088F49D0081A2CA /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		DBB72821208776BA002D2369 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Movie-Search-Mobile-iOS/Classes/Constants.swift"; sourceTree = SOURCE_ROOT; };
 		DBB7282320878442002D2369 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */,
+				DB8D26A82088F49D0081A2CA /* MovieDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -423,12 +426,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Movie-Search-Mobile-iOS/Pods-Movie-Search-Mobile-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +473,7 @@
 				DBB7282420878442002D2369 /* MovieModel.swift in Sources */,
 				DBB72822208776BA002D2369 /* Constants.swift in Sources */,
 				DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */,
+				DB8D26A92088F49D0081A2CA /* MovieDetailViewController.swift in Sources */,
 				DB4DF07D2085B89900B420B5 /* Movie_Search_Mobile_iOS.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

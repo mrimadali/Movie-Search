@@ -7,6 +7,7 @@ target 'Movie-Search-Mobile-iOS' do
   pod 'ReachabilitySwift'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'MBProgressHUD'
+  pod 'SDWebImage', '~> 4.0'
   target 'Movie-Search-Mobile-iOSTests' do
     inherit! :search_paths
     # Pods for testing

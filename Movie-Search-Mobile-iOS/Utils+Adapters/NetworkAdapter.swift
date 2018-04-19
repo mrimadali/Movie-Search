@@ -39,5 +39,4 @@ class NetworkAdapter: NSObject {
     
         task.resume()
     }
-    
 }

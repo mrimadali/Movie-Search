@@ -19,6 +19,8 @@
 		DB4DF0AF2085BA5300B420B5 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */; };
 		DB4DF0B02085BA5300B420B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */; };
 		DB663E6520864EBC00FB93E5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */; };
+		DBB72822208776BA002D2369 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB72821208776BA002D2369 /* Constants.swift */; };
+		DBB7282420878442002D2369 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB7282320878442002D2369 /* MovieModel.swift */; };
 		DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */; };
 		DBC97D83208610C000BA6C3B /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC97D82208610C000BA6C3B /* AppUtils.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +65,8 @@
 		DB4DF0A72085BA5300B420B5 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB663E6420864EBC00FB93E5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		DBB72821208776BA002D2369 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Movie-Search-Mobile-iOS/Classes/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		DBB7282320878442002D2369 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		DBC97D8020860EA300BA6C3B /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
 		DBC97D82208610C000BA6C3B /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		EB493101A0A501A3705B6862 /* Pods_Movie_Search_Mobile_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_Search_Mobile_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				DB4DF0A82085BA5300B420B5 /* AppDelegate.swift */,
+				DBB72821208776BA002D2369 /* Constants.swift */,
 				DB4DF0A62085BA5300B420B5 /* Controller */,
 				DB4DF0A92085BA5300B420B5 /* Model */,
 				DB4DF0AA2085BA5300B420B5 /* View */,
@@ -194,6 +199,7 @@
 		DB4DF0A92085BA5300B420B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DBB7282320878442002D2369 /* MovieModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,10 +421,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Movie-Search-Mobile-iOS/Pods-Movie-Search-Mobile-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +465,8 @@
 				DB4DF0AF2085BA5300B420B5 /* MoviesViewController.swift in Sources */,
 				DB663E6520864EBC00FB93E5 /* MovieTableViewCell.swift in Sources */,
 				DB4DF0B02085BA5300B420B5 /* AppDelegate.swift in Sources */,
+				DBB7282420878442002D2369 /* MovieModel.swift in Sources */,
+				DBB72822208776BA002D2369 /* Constants.swift in Sources */,
 				DBC97D8120860EA300BA6C3B /* NetworkAdapter.swift in Sources */,
 				DB4DF07D2085B89900B420B5 /* Movie_Search_Mobile_iOS.xcdatamodeld in Sources */,
 			);
@@ -634,14 +646,11 @@
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "$(SRCROOT)/Movie-Search-Mobile-iOS/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -654,14 +663,11 @@
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "$(SRCROOT)/Movie-Search-Mobile-iOS/Assets/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -674,11 +680,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "Movie-Search-Mobile-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -696,11 +698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "Movie-Search-Mobile-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -717,11 +715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "Movie-Search-Mobile-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -738,11 +732,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BTFVDS986A;
 				INFOPLIST_FILE = "Movie-Search-Mobile-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mia.Movie-Search-Mobile-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

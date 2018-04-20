@@ -30,7 +30,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Glg-7n-zfd"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAm-fb-TZb">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAm-fb-TZb">
                                 <rect key="frame" x="0.0" y="56" width="375" height="547"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -113,16 +113,38 @@
                                             <segue destination="Ehn-0U-QqK" kind="show" id="LDc-4d-Jl9"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadingCell" id="xZ4-sy-Rju">
+                                        <rect key="frame" x="0.0" y="138" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xZ4-sy-Rju" id="5Pt-AO-7iR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xoc-OX-4Ce">
+                                                    <rect key="frame" x="177" y="11" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="ayP-6J-wBN"/>
+                                                        <constraint firstAttribute="width" constant="20" id="tUg-bl-XIk"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xoc-OX-4Ce" firstAttribute="centerX" secondItem="5Pt-AO-7iR" secondAttribute="centerX" id="JkE-yE-yaA"/>
+                                                <constraint firstItem="xoc-OX-4Ce" firstAttribute="centerY" secondItem="5Pt-AO-7iR" secondAttribute="centerY" id="QtS-qa-cDx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="5Qs-qv-jtO"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="5lZ-yS-06Z"/>
                                 </connections>
                             </tableView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M64-NS-G1T">
-                                <rect key="frame" x="16" y="291" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for a movie using the keyword (eg., Batman)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M64-NS-G1T">
+                                <rect key="frame" x="16" y="291" width="343" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Ab3-vT-zJ0"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ab3-vT-zJ0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,7 +160,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M64-NS-G1T" secondAttribute="trailing" constant="16" id="I7Z-T1-ofa"/>
                             <constraint firstItem="M64-NS-G1T" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KkP-7g-fHI"/>
                             <constraint firstItem="M64-NS-G1T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="W95-Qr-GGc"/>
-                            <constraint firstItem="M64-NS-G1T" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ZVP-Ey-Bf4"/>
+                            <constraint firstItem="M64-NS-G1T" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="14.5" id="ZVP-Ey-Bf4"/>
                             <constraint firstItem="akA-DK-IJG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jKd-vl-B48"/>
                             <constraint firstItem="pAm-fb-TZb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mkC-jV-cfU"/>
                             <constraint firstItem="akA-DK-IJG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zO0-lA-cZq"/>
@@ -147,6 +169,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="9Yy-Nu-J3f"/>
                     <connections>
+                        <outlet property="messageLabel" destination="M64-NS-G1T" id="bIM-pg-okB"/>
                         <outlet property="searchBar" destination="akA-DK-IJG" id="fJM-fZ-bcO"/>
                         <outlet property="tableView" destination="pAm-fb-TZb" id="kr2-Md-CCX"/>
                     </connections>
@@ -188,13 +211,13 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="wPA-7i-rfk"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dollar sit, lore ipsum dollar sit, lorem" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn4-KH-LNa">
                                                             <rect key="frame" x="8" y="393" width="339" height="41"/>
-                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

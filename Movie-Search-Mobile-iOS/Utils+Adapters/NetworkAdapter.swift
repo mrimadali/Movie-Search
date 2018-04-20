@@ -20,8 +20,8 @@ class NetworkAdapter: NSObject {
     
     func getMoviesList(with query: String, pageNumber:Int, completionBlock:@escaping Completion) {
         let urlString = "\(baseURL)?api_key=\(apiKey)&query=\(query)&page=\(pageNumber)"
-        
-        let url = URL(string: urlString)
+        let encodedURL = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: encodedURL!)
         let config = URLSessionConfiguration.default
         
         let session = URLSession(configuration: config)

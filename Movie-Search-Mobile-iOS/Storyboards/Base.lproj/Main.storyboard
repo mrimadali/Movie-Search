@@ -170,11 +170,62 @@
                     <navigationItem key="navigationItem" title="Movies" id="9Yy-Nu-J3f"/>
                     <connections>
                         <outlet property="messageLabel" destination="M64-NS-G1T" id="bIM-pg-okB"/>
+                        <outlet property="queryTableView" destination="NRA-uz-TtJ" id="xts-t2-3V1"/>
+                        <outlet property="queryView" destination="MBX-Ic-TSg" id="cn3-NV-s1T"/>
                         <outlet property="searchBar" destination="akA-DK-IJG" id="fJM-fZ-bcO"/>
                         <outlet property="tableView" destination="pAm-fb-TZb" id="kr2-Md-CCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="MBX-Ic-TSg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NRA-uz-TtJ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                            <color key="backgroundColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <prototypes>
+                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="queryCell" rowHeight="35" id="s14-IP-KjQ" customClass="QueryTableViewCell" customModule="Movie_Search_Mobile_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="28" width="375" height="35"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s14-IP-KjQ" id="sqz-he-F2h">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test history" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-Am-tqX">
+                                                <rect key="frame" x="47" y="0.0" width="313" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="history" translatesAutoresizingMaskIntoConstraints="NO" id="8vz-YA-XCP">
+                                                <rect key="frame" x="15" y="7" width="24" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCellContentView>
+                                    <connections>
+                                        <outlet property="titleLabel" destination="DeH-Am-tqX" id="vk7-eq-fAr"/>
+                                    </connections>
+                                </tableViewCell>
+                            </prototypes>
+                            <connections>
+                                <outlet property="dataSource" destination="BYZ-38-t0r" id="yHn-Tk-zxn"/>
+                                <outlet property="delegate" destination="BYZ-38-t0r" id="aXX-XP-jLz"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="NRA-uz-TtJ" firstAttribute="top" secondItem="hvp-GH-12r" secondAttribute="top" id="dvr-yX-pPr"/>
+                        <constraint firstItem="NRA-uz-TtJ" firstAttribute="leading" secondItem="hvp-GH-12r" secondAttribute="leading" id="f92-nR-bfe"/>
+                        <constraint firstItem="NRA-uz-TtJ" firstAttribute="bottom" secondItem="hvp-GH-12r" secondAttribute="bottom" id="nXX-eD-3YK"/>
+                        <constraint firstItem="NRA-uz-TtJ" firstAttribute="trailing" secondItem="hvp-GH-12r" secondAttribute="trailing" id="un9-E0-dmg"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="hvp-GH-12r"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="861.60000000000002" y="-564.46776611694156"/>
         </scene>
@@ -306,6 +357,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="history" width="25" height="22"/>
         <image name="placeholder" width="150" height="150"/>
     </resources>
 </document>

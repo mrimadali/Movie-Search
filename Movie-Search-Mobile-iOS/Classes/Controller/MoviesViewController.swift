@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 import MBProgressHUD
 import Reachability
 import SwiftyJSON
@@ -25,9 +26,24 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet var queryView: UIView!
+    @IBOutlet weak var queryTableView: UITableView!
+    var queries = [Query]()
+    let entityName  = "Query"
+    let managedObjectContext = CoreDataHelper.managedObjectContext()
+
+    public var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    // Screen height.
+    public var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchQueries()
         do {
             try reachability.startNotifier()
         } catch {
@@ -38,6 +54,7 @@ class MoviesViewController: UIViewController {
     
     fileprivate func fetchMoviesList(keyword: String) {
         if keyword.count < 3  {
+            MBProgressHUD.hide(for: self.view, animated: true)
             AppUtils.showAlert(title: titleString, mesg: alertTitle_Atleast_3_Characters, controller: self)
         }else{        
             let reachability = Reachability()!
@@ -51,7 +68,7 @@ class MoviesViewController: UIViewController {
                 self.messageLabel.isHidden = true
                 NetworkAdapter().getMoviesList(with: keyword, pageNumber: self.pageNumber) { (json, error) in
                     DispatchQueue.main.async {
-                        self.parseMoviesData(error: error, json: json)
+                        self.parseMoviesData(keyword: keyword, error: error, json: json)
                     }
                 }
             }
@@ -63,7 +80,7 @@ class MoviesViewController: UIViewController {
         }
     }
 
-    fileprivate func parseMoviesData(error: Error?, json: JSON) {
+    fileprivate func parseMoviesData(keyword:String, error: Error?, json: JSON) {
         if error == nil {
             self.totalPages = Int(json["total_pages"].stringValue)!
             self.totalMoviesCount = Int(json["total_results"].stringValue)!
@@ -82,8 +99,10 @@ class MoviesViewController: UIViewController {
                 self.tableView.isHidden = false
             }
             isLoading = false
+            self.insertQuery(keyword: keyword)
             self.tableView.reloadData()
             MBProgressHUD.hide(for: self.view, animated: true)
+            self.fetchQueries()
             loadingActivity?.stopAnimating()
         }else {
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -92,6 +111,37 @@ class MoviesViewController: UIViewController {
         }
     }
 
+    fileprivate func fetchQueries() {
+        let queryArray = CoreDataHelper.fetchEntities(className: entityName, predicate: nil, sortDesc: nil, managedObjectContext: managedObjectContext) as! [Query]
+        
+        queries = queryArray.reversed()
+    }
+    
+    fileprivate func insertQuery(keyword: String) {
+        let query = CoreDataHelper.insertManagedObject(className: "Query", managedObjectContext: managedObjectContext) as! Query
+        
+        query.keyword  = keyword
+        query.serialNo = Int16(queries.count.advanced(by: 1))
+        CoreDataHelper.saveManagedObjectContext(managedObjectContext: managedObjectContext)
+    }
+    
+    fileprivate func showQueryView(show: Bool) {
+        if show {
+            queryView.frame = CGRect(x: 10, y: 56, width: Int(screenWidth-20), height: 35*self.queries.count)
+
+            UIView.transition(with: view, duration: 0.5, options: .repeat, animations: {
+                self.view.addSubview(self.queryView)
+
+            }, completion: nil)
+            
+        }else {
+            UIView.transition(with: view, duration: 0.5, options: .repeat, animations: {
+                self.queryView.removeFromSuperview()
+            }, completion: nil)
+
+        }
+    }
+    
     
     
      // MARK: - Navigation
@@ -109,39 +159,57 @@ class MoviesViewController: UIViewController {
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if moviesList.count != totalMoviesCount {
-            return moviesList.count+1
+        if tableView == queryTableView {
+            return self.queries.count
         }else {
-            return moviesList.count
+            if moviesList.count != totalMoviesCount {
+                return moviesList.count+1
+            }else {
+                return moviesList.count
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        if row == moviesList.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell")
-            loadingActivity = cell?.viewWithTag(100) as? UIActivityIndicatorView
-            loadingActivity?.startAnimating()
+        if tableView == queryTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "queryCell") as? QueryTableViewCell
+            
+            cell?.titleLabel?.text = queries[row].keyword
+            
+            return cell!
+            
+        }else {
+            if row == moviesList.count {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "loadingCell")
+                loadingActivity = cell?.viewWithTag(100) as? UIActivityIndicatorView
+                loadingActivity?.startAnimating()
+                return cell!
+            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIdentifier) as? MovieTableViewCell
+            let model = moviesList[row]
+            cell?.configureCell(model: model)
             return cell!
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIdentifier) as? MovieTableViewCell
-        let model = moviesList[row]
-        cell?.configureCell(model: model)
-        return cell!
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        if row == moviesList.count && moviesList.count != totalMoviesCount && !isLoading {
-            pageNumber += 1
-            isLoading = true
-            fetchMoviesList(keyword: searchBar.text!)
+        if tableView != queryTableView {
+            if row == moviesList.count && moviesList.count != totalMoviesCount && !isLoading {
+                pageNumber += 1
+                isLoading = true
+                fetchMoviesList(keyword: searchBar.text!)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
-        if row == moviesList.count {
+        if tableView == queryTableView {
+            return 35.0
+        }
+        else if  row == moviesList.count {
             return 44.0
         }else {
             return 110.0
@@ -151,15 +219,19 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension MoviesViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        queryTableView.reloadData()
+        showQueryView(show: true)
         searchBar.showsCancelButton = true
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        showQueryView(show: false)
         searchBar.showsCancelButton = false
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+        showQueryView(show: false)
+        searchBar.showsCancelButton = false
         if (searchBar.text?.count)! > 0 {
             pageNumber          = 1
             self.moviesList.removeAll()

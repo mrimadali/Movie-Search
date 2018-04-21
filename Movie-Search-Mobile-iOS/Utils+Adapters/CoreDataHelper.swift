@@ -101,7 +101,7 @@ class CoreDataHelper: NSObject {
         request.entity = entityDescription
         do {
             let results = try managedObjectContext.fetch(request)
-            managedObjectContext.delete(results.last as! NSManagedObject)
+            managedObjectContext.delete(results.first as! NSManagedObject)
             CoreDataHelper.saveManagedObjectContext(managedObjectContext: managedObjectContext)
             
         } catch let error as NSError {

@@ -30,7 +30,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func configureCell(model: MovieModel) {
-        releaseDateLabel.text = "Release Date: \(model.releaseDate)"
+        releaseDateLabel.text = "Release Date: \(model.releaseDate.formatDate())"
         
         //Download image asynchronously.
         var urlString = ""
@@ -53,5 +53,25 @@ class MovieTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }
+
+extension String {
+    func formatDate()-> String{
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd-MM-yyyy"
+        
+        if let date = dateFormatterGet.date(from: self){
+            return dateFormatterPrint.string(from: date)
+        }
+        else {
+            print("There was an error decoding the string")
+            return ""
+        }
+    }
+}
+
+

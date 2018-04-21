@@ -1,4 +1,4 @@
-//
+    //
 //  NetworkAdapter.swift
 //  Movie-Search-Mobile-iOS
 //

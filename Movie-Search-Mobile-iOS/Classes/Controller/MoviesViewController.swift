@@ -13,7 +13,10 @@ import Reachability
 import SwiftyJSON
 
 class MoviesViewController: UIViewController {
+    
     // MARK: - Class private variables
+    
+    // To check if internet connection is available.
     fileprivate let reachability        = Reachability()!
     fileprivate let tableViewIdentifier = "moviesCell"
     fileprivate let titleString         = "Movies"
@@ -23,34 +26,34 @@ class MoviesViewController: UIViewController {
     fileprivate var moviesList          = [MovieModel]()
     fileprivate var isLoading           = false
     fileprivate var loadingActivity: UIActivityIndicatorView?
+    var queries = [Query]()
+    let entityName  = "Query"
+    let managedObjectContext = CoreDataHelper.managedObjectContext()
+
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet var queryView: UIView!
     @IBOutlet weak var queryTableView: UITableView!
-    var queries = [Query]()
-    let entityName  = "Query"
-    let managedObjectContext = CoreDataHelper.managedObjectContext()
 
     public var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
     
-    // Screen height.
     public var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
     
+    // MARK: - View life cycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchQueries()
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
     }
 
+    // MARK: - Class private methods
     
     fileprivate func fetchMoviesList(keyword: String) {
         if keyword.count < 3  {
@@ -61,7 +64,7 @@ class MoviesViewController: UIViewController {
             
             reachability.whenUnreachable = { _ in
                 MBProgressHUD.hide(for: self.view, animated: true)
-                AppUtils.showAlert(title: "Offline", mesg: "You're internet connection appears to be offline", controller: self)
+                AppUtils.showAlert(title: offlineText, mesg: offlineMessage, controller: self)
                 return
             }
             reachability.whenReachable = { reachability in
@@ -72,6 +75,7 @@ class MoviesViewController: UIViewController {
                     }
                 }
             }
+            
             do {
                 try reachability.startNotifier()
             } catch {
@@ -97,12 +101,18 @@ class MoviesViewController: UIViewController {
             }else {
                 self.messageLabel.isHidden = true
                 self.tableView.isHidden = false
+                if !self.checkIfRecordExists(keyword: keyword) {
+                    self.insertQuery(keyword: keyword)
+                }
+            }
+            if self.queries.count > 10 {
+                CoreDataHelper.deleteLastItem(className: entityName, managedObjectContext: managedObjectContext)
             }
             isLoading = false
-            self.insertQuery(keyword: keyword)
-            self.tableView.reloadData()
-            MBProgressHUD.hide(for: self.view, animated: true)
             self.fetchQueries()
+            self.tableView.reloadData()
+
+            MBProgressHUD.hide(for: self.view, animated: true)
             loadingActivity?.stopAnimating()
         }else {
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -125,6 +135,25 @@ class MoviesViewController: UIViewController {
         CoreDataHelper.saveManagedObjectContext(managedObjectContext: managedObjectContext)
     }
     
+    fileprivate func checkIfRecordExists(keyword: String)->Bool {
+        var isExists = false
+        let predicate = NSPredicate(format: "keyword == %@", keyword)
+        let queryArray = CoreDataHelper.fetchEntities(className: entityName, predicate: predicate, sortDesc: nil, managedObjectContext: managedObjectContext) as! [Query]
+        if queryArray.count > 0 {
+            isExists = true
+        }
+        return isExists
+    }
+    
+    fileprivate func getRecord(for keyword: String)->String {
+        let predicate = NSPredicate(format: "keyword == %@", keyword)
+        let queryArray = CoreDataHelper.fetchEntities(className: entityName, predicate: predicate, sortDesc: nil, managedObjectContext: managedObjectContext) as! [Query]
+        if queryArray.count > 0 {
+            return (queryArray.first?.keyword)!
+        }
+        return ""
+    }
+    
     fileprivate func showQueryView(show: Bool) {
         if show {
             queryView.frame = CGRect(x: 10, y: 56, width: Int(screenWidth-20), height: 35*self.queries.count)
@@ -142,8 +171,6 @@ class MoviesViewController: UIViewController {
         }
     }
     
-    
-    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -156,6 +183,8 @@ class MoviesViewController: UIViewController {
      }
     
 }
+
+// MARK: - Table view datasource & delegate methods
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,6 +233,21 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        if tableView == queryTableView {
+            searchBar.resignFirstResponder()
+            showQueryView(show: false)
+            let keyword = getRecord(for: queries[row].keyword!)
+            searchBar.text = keyword
+            pageNumber          = 1
+            self.moviesList.removeAll()
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            fetchMoviesList(keyword: searchBar.text!)
+
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
         if tableView == queryTableView {
@@ -216,6 +260,8 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
+
+// MARK: - Search bar delegate methods
 
 extension MoviesViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

@@ -11,7 +11,7 @@ import XCTest
 
 class MovieModel_Tests: XCTestCase {
     
-    let model = MovieModel()
+    let sut = MovieModel()
     
     override func setUp() {
         super.setUp()
@@ -23,29 +23,24 @@ class MovieModel_Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     
     func testMovieTitle() {
-        model.movieTitle = "Batman"
-        XCTAssertEqual(model.movieTitle, "Batman")
+        sut.movieTitle = "Batman"
+        XCTAssertEqual(sut.movieTitle, "Batman")
     }
     
     func testReleaseDate() {
-        model.releaseDate = "12-12-2017"
-        XCTAssertEqual(model.releaseDate, "12-12-2017")
+        sut.releaseDate = "12-12-2017"
+        XCTAssertEqual(sut.releaseDate, "12-12-2017")
     }
     func testPosterPath() {
-        model.posterPath = "http://posterpath"
-        XCTAssertEqual(model.posterPath, "http://posterpath")
+        sut.posterPath = "http://posterpath"
+        XCTAssertEqual(sut.posterPath, "http://posterpath")
     }
     
     func testOverview() {
-        model.overview = "Lorem ipsum dollar sit"
-        XCTAssertEqual(model.overview, "Lorem ipsum dollar sit")
+        sut.overview = "Lorem ipsum dollar sit"
+        XCTAssertEqual(sut.overview, "Lorem ipsum dollar sit")
     }
     
 }

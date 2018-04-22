@@ -12,6 +12,8 @@
 		C7942F47394AB5E83660FB07 /* Pods_Movie_Search_Mobile_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFEBDC3DA0F3B40E261907E /* Pods_Movie_Search_Mobile_iOSTests.framework */; };
 		DB145796208C626B00DFA971 /* MovieModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB145795208C626B00DFA971 /* MovieModel_Tests.swift */; };
 		DB145798208C629200DFA971 /* MoviesViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB145797208C629200DFA971 /* MoviesViewController_Tests.swift */; };
+		DB14579A208C8B9300DFA971 /* MovieDetailViewController_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB145799208C8B9300DFA971 /* MovieDetailViewController_Tests.swift */; };
+		DB14579C208C8D0300DFA971 /* MovieTableViewCell_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14579B208C8D0300DFA971 /* MovieTableViewCell_Tests.swift */; };
 		DB1FC84B2089F19300499DFD /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1FC84A2089F19300499DFD /* CoreDataHelper.swift */; };
 		DB1FC84F208A130000499DFD /* QueryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1FC84E208A130000499DFD /* QueryTableViewCell.swift */; };
 		DB4DF07A2085B89900B420B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB4DF0782085B89900B420B5 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		BCE29FEB7AD2071338701B39 /* Pods-Movie-Search-Mobile-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie-Search-Mobile-iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movie-Search-Mobile-iOSTests/Pods-Movie-Search-Mobile-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB145795208C626B00DFA971 /* MovieModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel_Tests.swift; sourceTree = "<group>"; };
 		DB145797208C629200DFA971 /* MoviesViewController_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController_Tests.swift; sourceTree = "<group>"; };
+		DB145799208C8B9300DFA971 /* MovieDetailViewController_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController_Tests.swift; sourceTree = "<group>"; };
+		DB14579B208C8D0300DFA971 /* MovieTableViewCell_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell_Tests.swift; sourceTree = "<group>"; };
 		DB1FC84A2089F19300499DFD /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		DB1FC84E208A130000499DFD /* QueryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTableViewCell.swift; sourceTree = "<group>"; };
 		DB4DF0712085B89900B420B5 /* Movie-Search-Mobile-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie-Search-Mobile-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,8 @@
 				DB4DF08E2085B89A00B420B5 /* Info.plist */,
 				DB145795208C626B00DFA971 /* MovieModel_Tests.swift */,
 				DB145797208C629200DFA971 /* MoviesViewController_Tests.swift */,
+				DB145799208C8B9300DFA971 /* MovieDetailViewController_Tests.swift */,
+				DB14579B208C8D0300DFA971 /* MovieTableViewCell_Tests.swift */,
 			);
 			path = "Movie-Search-Mobile-iOSTests";
 			sourceTree = "<group>";
@@ -496,8 +502,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB14579A208C8B9300DFA971 /* MovieDetailViewController_Tests.swift in Sources */,
 				DB145796208C626B00DFA971 /* MovieModel_Tests.swift in Sources */,
 				DB145798208C629200DFA971 /* MoviesViewController_Tests.swift in Sources */,
+				DB14579C208C8D0300DFA971 /* MovieTableViewCell_Tests.swift in Sources */,
 				DB4DF08D2085B89A00B420B5 /* Movie_Search_Mobile_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

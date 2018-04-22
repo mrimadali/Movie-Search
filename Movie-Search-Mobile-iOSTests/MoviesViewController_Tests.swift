@@ -11,47 +11,61 @@ import XCTest
 
 class MoviesViewController_Tests: XCTestCase {
     
-    var movieVC: MoviesViewController?
+    var sut: MoviesViewController?
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        movieVC = storyboard.instantiateViewController(withIdentifier: "MoviesViewController") as? MoviesViewController
+        sut = storyboard.instantiateViewController(withIdentifier: "MoviesViewController") as? MoviesViewController
+        _ = sut?.view
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
+        
     func testNavigationTitle() {
-        movieVC?.navigationItem.title = "Movies"
-        XCTAssertEqual(movieVC?.navigationItem.title, "Movies")
+        sut?.navigationItem.title = "Movies"
+        XCTAssertEqual(sut?.navigationItem.title, "Movies")
     }
     
     func testMoviesCount() {
-        XCTAssertEqual(movieVC?.totalMoviesCount, 0)
+        XCTAssertEqual(sut?.totalMoviesCount, 0)
     }
     func testPageNumber() {
-        XCTAssertEqual(movieVC?.pageNumber, 1)
+        XCTAssertEqual(sut?.pageNumber, 1)
     }
     
     func testTotalPages() {
-        XCTAssertEqual(movieVC?.totalPages, 0)
+        XCTAssertEqual(sut?.totalPages, 0)
     }
    
     func testIsLoading() {
-        XCTAssertFalse((movieVC?.isLoading)!)
+        XCTAssertFalse((sut?.isLoading)!)
     }
     
-    func testSearchBar() {
-        XCTAssertNil(movieVC?.searchBar)
+    func testSearchBarNotNil() {
+        XCTAssertNotNil(sut?.searchBar)
     }
+    
+    func testTableViewNotNil() {
+        XCTAssertNotNil(sut?.tableView)
+    }
+    
+    func testMessageLabelNotNil() {
+        XCTAssertNotNil(sut?.messageLabel)
+    }
+
+    func testQueryViewNotNil() {
+        XCTAssertNotNil(sut?.queryView)
+    }
+    
+    func testQueryTableViewNotNil() {
+        XCTAssertNotNil(sut?.queryTableView)
+    }
+
+    
 }

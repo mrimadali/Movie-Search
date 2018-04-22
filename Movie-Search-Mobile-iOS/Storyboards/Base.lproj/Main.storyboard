@@ -231,7 +231,7 @@
         <!--Movie Detail View Controller-->
         <scene sceneID="coM-a4-LbP">
             <objects>
-                <viewController id="Ehn-0U-QqK" customClass="MovieDetailViewController" customModule="Movie_Search_Mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" id="Ehn-0U-QqK" customClass="MovieDetailViewController" customModule="Movie_Search_Mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ya0-YT-A7Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

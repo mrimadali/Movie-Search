@@ -5,8 +5,10 @@ The app is using the depedency mangager, Cocoapods (https://cocoapods.org/). Coc
 
 Installing Cocoapods:
 1. Open terminal and enter the following command
+
 sudo gem install cocoapods
 2. In Terminal, Go to your project directory and install cocoapods as:
+
 pod install
 
 

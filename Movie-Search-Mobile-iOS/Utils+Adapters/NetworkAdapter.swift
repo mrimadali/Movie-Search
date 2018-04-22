@@ -18,6 +18,8 @@ typealias Completion = (_ response: JSON, _ error: Error?) -> Void
 
 class NetworkAdapter: NSObject {
     
+    //Fetches the movies list from the web service.
+    
     func getMoviesList(with query: String, pageNumber:Int, completionBlock:@escaping Completion) {
         let urlString = "\(baseURL)?api_key=\(apiKey)&query=\(query)&page=\(pageNumber)"
         let encodedURL = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

@@ -17,4 +17,4 @@ let offlineMessage                  = "You're internet connection appears to be 
 let noResultsFound                  = "No Movies Found. Please try again."
 let movieCellHeight:CGFloat         = 110.0
 let defaultCellHeight:CGFloat       = 44.0
-let queryCellHeight:CGFloat       = 35.0
+let queryCellHeight:CGFloat         = 35.0

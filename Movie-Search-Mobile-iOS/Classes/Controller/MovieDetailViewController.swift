@@ -9,13 +9,17 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
+    // MARK: - Class private variables
     
     let detailTableViewIdentifier = "movieDetailCell"
-    
     var model: MovieModel?
     
+    // MARK: - IBOutlets
+     
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - View life cycle methods.
+    // Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = model?.movieTitle
@@ -26,10 +30,14 @@ class MovieDetailViewController: UIViewController {
 }
 
 extension MovieDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    // Tells the data source to return the number of rows in a given section of a table view.
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    // Asks the data source for a cell to insert in a particular location of the table view.
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: detailTableViewIdentifier) as? MovieTableViewCell
         cell?.isDetailCell = true

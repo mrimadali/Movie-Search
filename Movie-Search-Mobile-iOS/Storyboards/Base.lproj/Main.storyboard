@@ -13,7 +13,7 @@
         <!--Movies-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MoviesViewController" customModule="Movie_Search_Mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesViewController" id="BYZ-38-t0r" customClass="MoviesViewController" customModule="Movie_Search_Mobile_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -157,7 +157,6 @@
                             <constraint firstItem="pAm-fb-TZb" firstAttribute="top" secondItem="akA-DK-IJG" secondAttribute="bottom" id="9xE-Xz-bXO"/>
                             <constraint firstItem="pAm-fb-TZb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FqJ-5k-M2o"/>
                             <constraint firstItem="pAm-fb-TZb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GRG-hK-oxX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M64-NS-G1T" secondAttribute="trailing" constant="16" id="I7Z-T1-ofa"/>
                             <constraint firstItem="M64-NS-G1T" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KkP-7g-fHI"/>
                             <constraint firstItem="M64-NS-G1T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="W95-Qr-GGc"/>
                             <constraint firstItem="M64-NS-G1T" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="14.5" id="ZVP-Ey-Bf4"/>

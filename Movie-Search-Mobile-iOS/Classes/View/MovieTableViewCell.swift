@@ -28,7 +28,7 @@ class MovieTableViewCell: UITableViewCell {
         bgView.layer.shadowRadius  = 1.0
         bgView.layer.shadowOffset  = CGSize(width: 1.0, height: 1.0)
     }
-    
+    // Configure table view cell.
     func configureCell(model: MovieModel) {
         releaseDateLabel.text = "Release Date: \(model.releaseDate.formatDate())"
         
@@ -55,7 +55,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
 }
-
+// Format date as dd-MM-yyyy
 extension String {
     func formatDate()-> String{
         let dateFormatterGet = DateFormatter()

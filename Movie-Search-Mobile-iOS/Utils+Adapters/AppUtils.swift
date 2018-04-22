@@ -11,6 +11,8 @@ import SystemConfiguration
 
 class AppUtils: NSObject {
 
+    // An function that displays an alert message to the user.
+    
     class func showAlert(title:String, mesg:String, controller:AnyObject) {
         let alertController = UIAlertController(title: title, message: mesg, preferredStyle: .alert)
         

@@ -97,7 +97,7 @@ class MoviesViewController: UIViewController {
             if self.moviesList.count == 0 {
                 self.messageLabel.isHidden = false
                 self.tableView.isHidden = true
-                self.messageLabel.text = "No Movies Found. Please try again."
+                self.messageLabel.text = noResultsFound
             }else {
                 self.messageLabel.isHidden = true
                 self.tableView.isHidden = false
@@ -251,12 +251,12 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
         if tableView == queryTableView {
-            return 35.0
+            return queryCellHeight
         }
         else if  row == moviesList.count {
-            return 44.0
+            return defaultCellHeight
         }else {
-            return 110.0
+            return movieCellHeight
         }
     }
 }
@@ -284,7 +284,6 @@ extension MoviesViewController: UISearchBarDelegate {
             MBProgressHUD.showAdded(to: self.view, animated: true)
             fetchMoviesList(keyword: searchBar.text!)
         }
-
     }
 }
 

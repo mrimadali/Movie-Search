@@ -14,3 +14,23 @@ sudo gem install cocoapods
 pod install
 
 
+Libraries used in project:
+
+1. SwiftyJSON
+
+The better way to deal with JSON data in Swift.
+
+
+2. MBProgressHUD
+
+MBProgressHUD is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels while work is being done in a background thread.
+
+3. SDWebImage
+
+This library provides an async image downloader with cache support.
+
+4. ReachabilitySwift
+
+To check if internet is reachable.
+
+
